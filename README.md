@@ -1,95 +1,109 @@
-# Birthday Surprise Website - Customization Guide
+# Birthday Surprise Template
 
-Create a beautiful birthday surprise website for your loved one! This template makes it easy to personalize everything without touching the code.
+A beautiful, customizable birthday surprise website template. Create a personalized experience for your loved one with photos, music, and a heartfelt message.
+
+## Features
+
+- Name verification gate with typing animation
+- Animated hero section with birthday cake
+- Photo gallery with polaroid-style frames
+- Optional "together" photo gallery section
+- Typewriter-animated birthday letter
+- Background music with toggle
+- Confetti celebration effect
+- Fully responsive design
+- Easy customization via config file
 
 ## Quick Start
 
-1. **Clone this repository**
+```bash
+# Clone the repository
+git clone https://github.com/aungbbo/birthday-surprise-template.git
+cd birthday-surprise-template
 
-   ```bash
-   git clone https://github.com/yourusername/birthday-surprise-website.git
-   cd birthday-surprise-website
-   ```
+# Install dependencies
+npm install
 
-2. **Install dependencies**
+# Start development server
+npm run dev
 
-   ```bash
-   npm install
-   ```
-
-3. **Customize the config** (see below)
-
-4. **Add your photos and music**
-
-5. **Preview locally**
-
-   ```bash
-   npm run dev
-   ```
-
-6. **Build and deploy**
-   ```bash
-   npm run build
-   ```
-
----
+# Build for production
+npm run build
+```
 
 ## Customization
 
-### Step 1: Edit the Config File
+Edit `src/config.ts` to personalize everything:
 
-Open `src/config.ts` - this is the **only file you need to edit** to personalize the website.
-
-#### Name Verification
+### Name Verification
 
 ```typescript
-recipientName: "hsu",           // Name they must enter (case-insensitive)
-nameHint: '3 letters, starts with "H"',  // Hint shown after wrong attempt
+recipientName: "love",                    // Name to enter (case-insensitive)
+nameHint: '4 letters, starts with "L"',   // Hint shown on wrong attempt
 ```
 
-#### Section Headings
+### Section Headings
 
 ```typescript
-soloGalleryTitle: "My Cutie BD Girl",    // First photo gallery title
-coupleGalleryTitle: "Us Together",        // Second photo gallery title
-messageTitle: "To My Favorite Person",    // Letter section title
-footerText: "Made with love just for you", // Footer text
+soloGalleryTitle: "✨ My Birthday Girl ✨",  // First gallery title
+messageTitle: "To My Favorite Person",       // Letter section title
+footerText: "Made with 💗 just for you",     // Footer text
 ```
 
-#### Button Labels
+### Button Labels
 
 ```typescript
 buttons: {
-  hero: "Ready for a little surprise?",
-  firstGallery: "Want to see more?",
-  secondGallery: "One last thing...",
+  hero: "Ready for a little surprise?",   // Hero section button
+  soloGallery: "Want to see more?",       // Solo gallery button
 },
 ```
 
-#### Birthday Message
+### Together Gallery (Optional)
+
+```typescript
+togetherGallery: {
+  enabled: true,                          // Set false to disable
+  title: "💕 Our Memories 💕",            // Together gallery title
+  buttonText: "One last thing...",        // Together gallery button
+},
+```
+
+When `enabled: false`, the together gallery is skipped and you don't need photos in `src/assets/together/`.
+
+### Birthday Message
 
 ```typescript
 message: [
-  "Happy Birthday!",
-  "",  // Empty string = blank line
-  "Your personalized message goes here...",
+  "Happy Birthday, my love!",
+  "",                                     // Empty string = blank line
+  "Your personalized message here...",
   "",
   "- With love,",
 ],
 ```
 
-#### Theme Colors
+### Theme Colors
 
 ```typescript
 colors: {
-  primary: "#ec4899",    // Main pink
-  secondary: "#f9a8d4",  // Light pink
-  accent: "#fdf2f8",     // Background accent
-  white: "#ffffff",
+  primary: "#ec4899",   // Main color (buttons, accents)
+  light: "#fdf2f8",     // Lightest shade (backgrounds)
+  medium: "#f9a8d4",    // Medium shade (decorations)
+  dark: "#db2777",      // Darkest shade (hover states)
 },
 ```
 
-#### Typing Animation Text
+**Example themes:**
+
+| Theme          | primary   | light     | medium    | dark      |
+| -------------- | --------- | --------- | --------- | --------- |
+| Pink (default) | `#ec4899` | `#fdf2f8` | `#f9a8d4` | `#db2777` |
+| Blue           | `#3b82f6` | `#eff6ff` | `#93c5fd` | `#1d4ed8` |
+| Purple         | `#a855f7` | `#faf5ff` | `#d8b4fe` | `#7c3aed` |
+| Green          | `#22c55e` | `#f0fdf4` | `#86efac` | `#16a34a` |
+
+### Typing Animation
 
 ```typescript
 typingText: {
@@ -98,146 +112,113 @@ typingText: {
 },
 ```
 
----
+## Adding Photos
 
-### Step 2: Add Your Photos
-
-Replace the photos in these folders:
+Replace photos in these folders:
 
 ```
 src/assets/
-├── solo/           # 9 photos of your loved one
-│   ├── s1.jpg
-│   ├── s2.jpg
-│   ├── s3.jpg
-│   ├── s4.jpg
-│   ├── s5.jpg
-│   ├── s6.jpg
-│   ├── s7.jpg
-│   ├── s8.jpg
-│   └── s9.jpg
+├── solo/              # 9 photos (required)
+│   ├── s1.png
+│   ├── s2.png
+│   └── ... s9.png
 │
-└── couple/         # 9 photos of you together
-    ├── c1.jpg
-    ├── c2.jpg
-    ├── c3.jpg
-    ├── c4.jpg
-    ├── c5.jpg
-    ├── c6.jpg
-    ├── c7.jpg
-    ├── c8.jpg
-    └── c9.jpg
+├── together/          # 9 photos (only if togetherGallery.enabled is true)
+│   ├── t1.png
+│   ├── t2.png
+│   └── ... t9.png
+│
+├── music.mp3          # Background music
+├── banner.gif         # Hero banner animation
+└── cake.gif           # Birthday cake animation
 ```
 
-**Photo Tips:**
+**Photo tips:**
 
-- Use square or nearly square photos for best results
-- Recommended size: 500x500 to 1000x1000 pixels
-- Supported formats: JPG, PNG, WebP
-- Keep file sizes reasonable (under 500KB each) for fast loading
-
----
-
-### Step 3: Add Your Music
-
-Replace the background music:
-
-```
-src/assets/music.mp3
-```
-
-**Music Tips:**
-
-- Use MP3 format for best compatibility
-- Keep file size under 5MB if possible
-- Choose something meaningful to both of you!
-
----
-
-### Step 4: Update the Banner and Cake GIFs (Optional)
-
-Replace the animated images:
-
-```
-src/assets/banner.gif    # Animated banner on hero section
-src/assets/cake.gif      # Birthday cake animation
-```
-
----
-
-## Deployment Options
-
-### Option 1: Vercel (Recommended - Free)
-
-1. Push your repo to GitHub
-2. Go to [vercel.com](https://vercel.com)
-3. Import your repository
-4. Click Deploy
-
-### Option 2: Netlify (Free)
-
-1. Push your repo to GitHub
-2. Go to [netlify.com](https://netlify.com)
-3. Connect your repository
-4. Deploy
-
-### Option 3: GitHub Pages
-
-1. Install gh-pages: `npm install -D gh-pages`
-2. Add to package.json scripts: `"deploy": "npm run build && gh-pages -d dist"`
-3. Run: `npm run deploy`
-
----
+- Use square or nearly square images
+- Recommended: 500x500 to 1000x1000 pixels
+- Formats: PNG, JPG
+- Keep files under 500KB for fast loading
 
 ## Project Structure
 
 ```
 birthday-surprise-website/
 ├── src/
-│   ├── config.ts              # EDIT THIS FILE
-│   ├── App.tsx                # Main app component
-│   ├── App.css                # Global styles
+│   ├── config.ts           # ← Edit this file to customize
+│   ├── App.tsx             # Main app component
+│   ├── App.css             # App styles
+│   ├── index.css           # Global styles & theme
 │   ├── assets/
-│   │   ├── solo/              # Solo photos (s1-s9.jpg)
-│   │   ├── couple/            # Couple photos (c1-c9.jpg)
-│   │   ├── music.mp3          # Background music
-│   │   ├── banner.gif         # Hero banner
-│   │   └── cake.gif           # Birthday cake
+│   │   ├── solo/           # Solo photos (s1-s9.png)
+│   │   ├── together/       # Together photos (t1-t9.png)
+│   │   ├── music.mp3       # Background music
+│   │   ├── banner.gif      # Hero banner
+│   │   └── cake.gif        # Birthday cake
 │   └── components/
-│       ├── NameGate.tsx       # Entry verification screen
-│       ├── HeroSection.tsx    # Welcome section with cake
-│       ├── PhotoGallery.tsx   # Reusable photo grid
-│       └── LetterSection.tsx  # Birthday message
-├── CUSTOMIZE.md               # This file
-└── README.md                  # Project readme
+│       ├── NameGate.tsx       # Name verification
+│       ├── HeroSection.tsx    # Welcome section
+│       ├── PhotoGallery.tsx   # Photo grid
+│       └── LetterSection.tsx  # Birthday wishes letter
+├── public/
+│   └── icon.png            # Browser tab icon
+├── index.html
+└── package.json
 ```
 
----
+## Deployment
+
+### Vercel (Recommended)
+
+1. Push to GitHub
+2. Go to [vercel.com](https://vercel.com)
+3. Import repository
+4. Deploy
+
+### Netlify
+
+1. Push to GitHub
+2. Go to [netlify.com](https://netlify.com)
+3. Connect repository
+4. Deploy
 
 ## FAQ
 
-**Q: How do I change the number of photos?**
-A: The template expects 9 photos per gallery (3x3 grid). If you want a different layout, you'll need to modify `PhotoGallery.tsx`.
+**Q: Can I use fewer than 9 photos?**
+<br>
+A: The template uses a 3x3 grid (9 photos). For different layouts, modify `PhotoGallery.tsx`.
 
-**Q: Can I add more sections?**
-A: Yes! Create a new component in `src/components/` and add it to `App.tsx`.
+**Q: Music doesn't autoplay?**
+<br>
+A: Browsers block autoplay. Music starts after entering the correct name.
 
-**Q: The music doesn't autoplay?**
-A: Modern browsers block autoplay. The music starts after the visitor enters the correct name.
+**Q: Can I disable the together gallery?**
+<br>
+A: Yes! Set `togetherGallery.enabled: false` in config.
 
-**Q: How do I change the pink color scheme?**
-A: Edit the colors in `src/config.ts` and `src/App.css` (CSS variables at the top).
+**Q: How do I change the theme color?**
+<br>
+A: Edit the `colors` object in `src/config.ts`. Changes apply to the entire site.
+
+## Tech Stack
+
+- React + TypeScript
+- Vite
+- Framer Motion
+- Canvas Confetti
+
+## Support
+
+If you found this template helpful, consider buying me a coffee so I can create more templates for special occasions!
+
+<a href="https://www.buymeacoffee.com/aungbbo" target="_blank">
+  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="50">
+</a>
+
+## License
+
+Personal Use Only — free to use for personal projects. Commercial use is not permitted.
 
 ---
 
-## Need Help?
-
-If you run into issues:
-
-1. Make sure all photo files exist and are named correctly
-2. Check the browser console for errors
-3. Ensure all dependencies are installed (`npm install`)
-
----
-
-Made with love for love!
+Made with love for love 💕
