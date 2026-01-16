@@ -5,7 +5,7 @@
    one by one (not scrollable)
    ========================================== */
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import confetti from "canvas-confetti";
 import { config } from "./config";
@@ -59,28 +59,6 @@ function hexToRgb(hex: string): { r: number; g: number; b: number } | null {
         b: parseInt(result[3], 16),
       }
     : null;
-}
-
-// Helper function to adjust color brightness
-function adjustBrightness(hex: string, percent: number): string {
-  const rgb = hexToRgb(hex);
-  if (!rgb) return hex;
-
-  const adjust = (value: number) =>
-    Math.min(
-      255,
-      Math.max(0, Math.round(value + (255 - value) * (percent / 100)))
-    );
-
-  if (percent > 0) {
-    // Lighten
-    return `rgb(${adjust(rgb.r)}, ${adjust(rgb.g)}, ${adjust(rgb.b)})`;
-  } else {
-    // Darken
-    const darken = (value: number) =>
-      Math.min(255, Math.max(0, Math.round(value * (1 + percent / 100))));
-    return `rgb(${darken(rgb.r)}, ${darken(rgb.g)}, ${darken(rgb.b)})`;
-  }
 }
 
 export default function App() {
