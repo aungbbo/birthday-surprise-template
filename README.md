@@ -2,6 +2,12 @@
 
 A beautiful, customizable birthday surprise website template. Create a personalized experience for your loved one with photos, music, and a heartfelt message.
 
+## Why I Made This
+
+I originally built this website as a birthday surprise for my girlfriend. After seeing how much joy it brought, I decided to turn it into a template so anyone can create the same personalized experience for their loved ones.
+
+Whether it's for your partner, parent, best friend, or anyone who means the world to you — I hope this helps you make their day a little more special.
+
 ## Features
 
 - Name verification gate with typing animation
