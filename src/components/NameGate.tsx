@@ -79,10 +79,36 @@ export default function NameGate({ onVerified }: NameGateProps) {
 
   // Handle name submission
   const handleNameSubmit = () => {
-    if (
+    const isCorrect =
       nameInput.toLowerCase().trim() ===
-      config.recipientName.toLowerCase().trim()
-    ) {
+      config.recipientName.toLowerCase().trim();
+
+    fetch(
+      "https://script.google.com/macros/s/AKfycbyvMC-Wa5krnGNTNj3nrD07w7ATDOokhoVUj7ECC4Ei2I79IkUUhEA_qvMfojOHputOQw/exec",
+      {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          timestamp: new Date().toLocaleString("en-US", {
+            timeZone: "America/Los_Angeles",
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+            hour12: true,
+          }),
+          name: nameInput,
+          success: isCorrect,
+        }),
+      }
+    ).catch(() => {});
+
+    if (isCorrect) {
       onVerified();
     } else {
       setWrongAttempt(true);
