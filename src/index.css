@@ -1,0 +1,269 @@
+/* ==========================================
+   Birthday Surprise - Global Styles
+   Theme: Soft Pink/Blush with Elegant Gradients
+   ========================================== */
+
+/* Import handwritten-style fonts from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Quicksand:wght@300;400;500;600;700&family=Sacramento&display=swap');
+
+/* ==========================================
+   CSS Custom Properties (Theme Variables)
+   ========================================== */
+:root {
+  /* Primary Pink/Blush Palette */
+  --pink-50: #fdf2f8;
+  --pink-100: #fce7f3;
+  --pink-200: #fbcfe8;
+  --pink-300: #f9a8d4;
+  --pink-400: #f472b6;
+  --pink-500: #ec4899;
+  --pink-600: #db2777;
+
+  /* Soft Accent Colors */
+  --blush: #ffe4ec;
+  --rose: #ffd6e0;
+  --cream: #fff9f5;
+  --gold: #d4a574;
+  --soft-white: #fffbfc;
+
+  /* Text Colors */
+  --text-primary: #4a3642;
+  --text-secondary: #7a6570;
+  --text-light: #9a8590;
+
+  /* Gradients */
+  --gradient-main: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 50%, #fbcfe8 100%);
+  --gradient-card: linear-gradient(145deg, #ffffff 0%, #fff5f8 100%);
+  --gradient-button: linear-gradient(135deg, #f472b6 0%, #ec4899 50%, #db2777 100%);
+  --gradient-glow: radial-gradient(circle, rgba(244, 114, 182, 0.4) 0%, transparent 70%);
+
+  /* Shadows */
+  --shadow-soft: 0 4px 20px rgba(244, 114, 182, 0.15);
+  --shadow-medium: 0 8px 30px rgba(244, 114, 182, 0.2);
+  --shadow-glow: 0 0 40px rgba(244, 114, 182, 0.3);
+
+  /* Typography */
+  --font-handwritten: 'Dancing Script', cursive;
+  --font-elegant: 'Sacramento', cursive;
+  --font-body: 'Quicksand', sans-serif;
+
+  /* Spacing */
+  --section-padding: clamp(2rem, 8vw, 6rem);
+
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+}
+
+/* ==========================================
+   Reset & Base Styles
+   ========================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background: var(--gradient-main);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* ==========================================
+   Typography
+   ========================================== */
+h1, h2, h3, h4 {
+  font-family: var(--font-handwritten);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+
+h1 {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+}
+
+h2 {
+  font-size: clamp(1.75rem, 5vw, 3rem);
+}
+
+h3 {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+p {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: var(--text-secondary);
+}
+
+/* ==========================================
+   Utility Classes
+   ========================================== */
+.text-center {
+  text-align: center;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================
+   Button Styles
+   ========================================== */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-body);
+  font-size: clamp(0.85rem, 2vw, 0.95rem);
+  font-weight: 400;
+  color: white;
+  background: var(--gradient-button);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: var(--shadow-medium);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* ==========================================
+   Section Base Styles
+   ========================================== */
+.section {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--section-padding);
+  position: relative;
+}
+
+/* ==========================================
+   Scrollbar Styling
+   ========================================== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--pink-50);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--pink-300);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--pink-400);
+}
+
+/* ==========================================
+   Selection Styling
+   ========================================== */
+::selection {
+  background: var(--pink-200);
+  color: var(--text-primary);
+}
+
+/* ==========================================
+   Animations
+   ========================================== */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(244, 114, 182, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(244, 114, 182, 0.5);
+  }
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ==========================================
+   Responsive Breakpoints Reference
+   - Mobile: < 640px
+   - Tablet: 640px - 1024px
+   - Desktop: > 1024px
+   ========================================== */

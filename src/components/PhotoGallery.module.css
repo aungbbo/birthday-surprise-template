@@ -1,0 +1,345 @@
+/* ==========================================
+   PhotoGallery Styles - 3x3 Polaroid Grid
+   ========================================== */
+
+.gallery {
+  position: relative;
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  gap: 1rem;
+  background: radial-gradient(
+      ellipse at top left,
+      rgba(252, 231, 243, 0.9) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at bottom right,
+      rgba(249, 168, 212, 0.3) 0%,
+      transparent 50%
+    ),
+    linear-gradient(180deg, #fdf2f8 0%, #fff1f5 50%, #fce7f3 100%);
+  overflow: hidden;
+}
+
+/* Decorative pink circles */
+.gallery::before {
+  content: "";
+  position: absolute;
+  top: 10%;
+  left: -10%;
+  width: clamp(200px, 40vw, 350px);
+  height: clamp(200px, 40vw, 350px);
+  background: radial-gradient(
+    circle,
+    rgba(252, 231, 243, 0.6) 0%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.gallery::after {
+  content: "";
+  position: absolute;
+  bottom: 15%;
+  right: -10%;
+  width: clamp(150px, 35vw, 300px);
+  height: clamp(150px, 35vw, 300px);
+  background: radial-gradient(
+    circle,
+    rgba(249, 168, 212, 0.4) 0%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* ==========================================
+   Section Header
+   ========================================== */
+.heading {
+  font-family: "Dancing Script", cursive;
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  font-weight: 700;
+  color: #8b4563;
+  text-align: center;
+  margin: 0;
+  z-index: 1;
+  text-shadow: 0 2px 8px rgba(244, 114, 182, 0.15);
+}
+
+/* ==========================================
+   3x3 Photo Grid
+   ========================================== */
+.photoGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: min(1.5vw, 1.5vh);
+  z-index: 1;
+}
+
+/* ==========================================
+   Photo Frame
+   ========================================== */
+.photoFrame {
+  cursor: pointer;
+  transform-origin: center center;
+}
+
+/* ==========================================
+   Polaroid
+   ========================================== */
+.polaroid {
+  background: white;
+  padding: min(1.2vh, 10px) min(1.2vh, 10px) min(3.5vh, 28px) min(1.2vh, 10px);
+  border-radius: 3px;
+  box-shadow: 0 4px 15px rgba(244, 114, 182, 0.15),
+    0 2px 6px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.3s ease;
+}
+
+.photoFrame:hover .polaroid {
+  box-shadow: 0 12px 30px rgba(244, 114, 182, 0.25),
+    0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Dynamic photo size based on viewport */
+.photo {
+  width: min(18vw, 18vh);
+  aspect-ratio: 1;
+  object-fit: cover;
+  display: block;
+  border-radius: 2px;
+}
+
+/* ==========================================
+   Decorative Side Borders - Romantic Style
+   ========================================== */
+.sideBorderLeft,
+.sideBorderRight {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 70%;
+  width: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  z-index: 1;
+}
+
+.sideBorderLeft {
+  left: clamp(0.5rem, 3vw, 2.5rem);
+}
+
+.sideBorderRight {
+  right: clamp(0.5rem, 3vw, 2.5rem);
+}
+
+/* Decorative vine line */
+.sideBorderLeft::before,
+.sideBorderRight::before {
+  content: "";
+  position: absolute;
+  top: 5%;
+  bottom: 5%;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(244, 114, 182, 0.2) 10%,
+    rgba(249, 168, 212, 0.35) 30%,
+    rgba(244, 114, 182, 0.4) 50%,
+    rgba(249, 168, 212, 0.35) 70%,
+    rgba(244, 114, 182, 0.2) 90%,
+    transparent 100%
+  );
+}
+
+/* Decorative sparkle dots */
+.borderDot {
+  width: 5px;
+  height: 5px;
+  background: radial-gradient(
+    circle,
+    rgba(249, 168, 212, 0.8) 0%,
+    rgba(244, 114, 182, 0.4) 100%
+  );
+  border-radius: 50%;
+  position: relative;
+  z-index: 2;
+  animation: twinkle 2s ease-in-out infinite;
+}
+
+.borderDot:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.borderDot:nth-child(4) {
+  animation-delay: 0.8s;
+}
+
+.borderDot:nth-child(1),
+.borderDot:nth-child(5) {
+  width: 3px;
+  height: 3px;
+  opacity: 0.6;
+}
+
+/* Romantic floating hearts */
+.borderHeart {
+  font-size: 1rem;
+  color: #f472b6;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 0 4px rgba(244, 114, 182, 0.4));
+  animation: floatHeart 3s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.3);
+  }
+}
+
+@keyframes floatHeart {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-3px) scale(1.1);
+    opacity: 1;
+  }
+}
+
+/* Right side hearts have offset animation */
+.sideBorderRight .borderHeart {
+  animation-delay: 1.5s;
+}
+
+.sideBorderRight .borderDot:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.sideBorderRight .borderDot:nth-child(2) {
+  animation-delay: 0.6s;
+}
+
+.sideBorderRight .borderDot:nth-child(4) {
+  animation-delay: 1s;
+}
+
+/* ==========================================
+   Continue Button
+   ========================================== */
+.continueButton {
+  position: relative;
+  z-index: 20;
+  margin-top: 0.5rem;
+}
+
+.arrow {
+  display: inline-block;
+  margin-left: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.continueButton:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* ==========================================
+   Responsive - Tablet
+   ========================================== */
+@media (min-width: 640px) {
+  .gallery {
+    padding: 1.5rem;
+    gap: 3rem;
+  }
+
+  .photoGrid {
+    gap: min(2vw, 2vh);
+  }
+
+  .photo {
+    width: min(20vw, 20vh);
+  }
+}
+
+/* ==========================================
+   Responsive - Mobile
+   ========================================== */
+@media (max-width: 639px) {
+  .gallery {
+    padding: 0.5rem;
+    gap: 3rem;
+  }
+
+  .photoGrid {
+    gap: min(1.5vw, 1.5vh);
+  }
+
+  .polaroid {
+    padding: min(0.8vh, 4px) min(0.8vh, 4px) min(2vh, 14px) min(0.8vh, 4px);
+  }
+
+  .photo {
+    width: min(26vw, 22vh);
+  }
+
+  .heading {
+    font-size: clamp(1.2rem, 5vw, 1.6rem);
+  }
+
+  /* Hide side borders on mobile */
+  .sideBorderLeft,
+  .sideBorderRight {
+    display: none;
+  }
+}
+
+/* ==========================================
+   Responsive - Large screens
+   ========================================== */
+@media (min-width: 1024px) {
+  .gallery {
+    padding: 2rem 1.5rem;
+    gap: 2rem;
+  }
+
+  .photoGrid {
+    gap: min(2vw, 2vh);
+  }
+
+  .photo {
+    width: min(14vw, 18vh);
+  }
+}
+
+/* ==========================================
+   Responsive - Extra Large screens
+   ========================================== */
+@media (min-width: 1440px) {
+  .photo {
+    width: min(16vw, 18vh);
+  }
+
+  .photoGrid {
+    gap: min(2vw, 2vh);
+  }
+}
