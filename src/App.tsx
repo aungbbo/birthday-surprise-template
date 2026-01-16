@@ -49,18 +49,6 @@ const TOGETHER_PHOTOS = config.togetherGallery.enabled
 const TOTAL_SECTIONS = config.togetherGallery.enabled ? 4 : 3;
 const SECTION_LETTER = config.togetherGallery.enabled ? 3 : 2;
 
-// Helper function to convert hex to RGB
-function hexToRgb(hex: string): { r: number; g: number; b: number } | null {
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return result
-    ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16),
-      }
-    : null;
-}
-
 export default function App() {
   // Track if user has clicked start
   const [showStartScreen, setShowStartScreen] = useState(true);
